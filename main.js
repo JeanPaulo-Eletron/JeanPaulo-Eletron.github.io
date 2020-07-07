@@ -1,13 +1,14 @@
-var input1   = document.querySelector('#input1')
+var BtnEnviar   = document.querySelector('#BtnEnviar')
+CaixaDeResposta = document.querySelector('#CaixaDeResposta')
 if (window.Worker) {
     var myWorker = new Worker('ThreadWork.js');
-	input1.onchange = function(){
-        myWorker.postMessage(input1.value)
+	BtnEnviar.onclick = ()=>{
+        myWorker.postMessage(CaixaDeTexto.value)
         console.log('Message posted to worker');
     }
 
 	myWorker.onmessage = function(e) {
-//		result.textContent = e.data;
+        CaixaDeResposta.textContent += e.data + "\n";
 		console.log('Message received from worker'+e.data);
 	}
 } else {
