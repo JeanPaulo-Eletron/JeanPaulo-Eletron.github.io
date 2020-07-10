@@ -1,10 +1,11 @@
 var BtnEnviar   = document.querySelector('#BtnEnviar')
 CaixaDeResposta = document.querySelector('#CaixaDeResposta')
 if (window.Worker) {
-    var myWorker = new Worker('ThreadWork.js');
+    var myWorker = new Worker('Threads/ThreadWork.js');
 	BtnEnviar.onclick = ()=>{
         myWorker.postMessage(CaixaDeTexto.value)
         console.log('Message posted to worker');
+        CaixaDeTexto.value = ""
     }
 
 	myWorker.onmessage = function(e) {
